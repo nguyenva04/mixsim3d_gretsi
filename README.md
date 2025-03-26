@@ -12,7 +12,6 @@ MixSim3d is an innovative deep learning self-supervised methodology designed to 
 
 - 🔬 Supports regression and classification tasks
 - 💻 Distributed training
-- 📊 Advanced performance metrics
 - 🧠 Flexible model configuration
 
 ## 📋 Prerequisites
@@ -83,12 +82,16 @@ python ./scripts/train_finetune.py <dataset_path> -b <batch_size> -c <config_pat
 python ./scripts/train_finetune.py "C:\Users\nguyenva\Documents\drp3d_project\data" -b 2 -c "C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_finetune.json" -e 100 -lr 1e-5**
 ```
 
-### Prediction
+## 🔍 Prediction  
+This step is to evaluate the model by producing the scatter plot, presenting the results in the paper.
+
 ```bash
-python scripts/predict.py \
-    --config configs/config_predict.json \
+python scripts/predict.py --config configs/config_predict.json 
 ```
 **Note**: Please review and modify the checkpoint path in the `.json` file for fine-tuning and prediction steps.
+
+---
+
 
 ## 📊 Performance Metrics
 
