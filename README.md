@@ -1,4 +1,4 @@
-# Deep Regression Prediction (DRP)
+# MixSim3d:  A 3D Curriculum-Based Contrastive Learning Framework Applied to Digital Rock Physics
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch Version](https://img.shields.io/badge/pytorch-1.8%2B-red.svg)](https://pytorch.org/)
