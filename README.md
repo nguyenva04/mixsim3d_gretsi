@@ -4,6 +4,17 @@
 [![PyTorch Version](https://img.shields.io/badge/pytorch-1.8%2B-red.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/github/license/nguyenva04/mixsim3d_gretsi.svg)](https://github.com/nguyenva04/mixsim3d_gretsi/blob/main/LICENSE)
 
+## 👥 Authors
+- **Van Thao Nguyen**¹,² <van-thao.nguyen@ifpen.fr>
+- **Dominique Fourer**² <dominique.fourer@univ-evry.fr>
+- **Jean-François Lecomte**¹ <jean-francois.lecomte@ifpen.fr>
+- **Souhail Youssef**¹ <souhail.youssef@ifpen.fr>
+- **Désiré Sidibé**² <drodesire.sidibe@univ-evry.fr>
+
+## Affiliations
+¹ IFP Énergies nouvelles, Ruel Malmaison, France
+² Laboratoire IBISC (EA 4526), Université d'Evry Paris-Saclay, Évry-Courcouronnes, France
+
 ## 📘 Overview
 
 MixSim3d is an innovative deep learning self-supervised methodology designed to advance representation learning from 3D images, with a specific focus on Digital Rocks Physics (DRP) applications.
@@ -31,6 +42,7 @@ mixsim3d_gretsi/
 │
 ├── drp/                # Core package
 │   ├── utils/
+│   ├── builder/
 │   ├── handlers/
 │   ├── metrics/
 │   └── train/
