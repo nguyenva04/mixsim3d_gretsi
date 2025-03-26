@@ -27,7 +27,7 @@ cd mixsim3d_gretsi
 ## 📂 Project Structure
 
 ```
-deep-regression-prediction/
+mixsim3d_gretsi/
 │
 ├── drp/                # Core package
 │   ├── utils/
