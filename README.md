@@ -108,6 +108,8 @@ Van Thao NGUYEN - [van-thao.nguyen@ifpen.fr](mailto:van-thao.nguyen@ifpen.fr)
 
 Project Link: [https://github.com/nguyenva04/mixsim3d_gretsi](https://github.com/nguyenva04/mixsim3d_gretsi/tree/main)
 
+For dataset access permissions, please contact us.
+
 ## 🙏 Acknowledgements
 
 - [PyTorch](https://pytorch.org/)
