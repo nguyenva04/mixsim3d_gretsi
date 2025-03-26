@@ -2,11 +2,11 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch Version](https://img.shields.io/badge/pytorch-1.8%2B-red.svg)](https://pytorch.org/)
-[![License](https://img.shields.io/github/license/yourusername/deep-regression-prediction.svg)](https://github.com/nguyenva04/mixsim3d_gretsi/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/nguyenva04/mixsim3d_gretsi.svg)](https://github.com/nguyenva04/mixsim3d_gretsi/blob/main/LICENSE)
 
 ## 📘 Overview
 
-Deep Regression Prediction (DRP) is a flexible deep learning framework for advanced prediction tasks, supporting both regression and classification with distributed computing capabilities.
+MixSim3d is an innovative deep learning self-supervised methodology designed to advance representation learning from 3D images, with a specific focus on Digital Rocks Physics (DRP) applications.
 
 ## 🚀 Features
 
@@ -17,47 +17,14 @@ Deep Regression Prediction (DRP) is a flexible deep learning framework for advan
 
 ## 📋 Prerequisites
 
-### System Requirements
-
-- **Python**: 3.8+
-- **GPU**: CUDA-enabled (recommended)
-- **Dependencies**: 
-  - PyTorch 1.8+
-  - CUDA
-  - Additional requirements in `requirements.txt`
+-Refer to requirements.txt for installing all python dependencies. We use python 3.10.13 with pytorch 2.1.2+cu118.
 
 ## 🔧 Installation
 
-### 1. Clone the Repository
-
 ```bash
-git clone https://github.com/yourusername/deep-regression-prediction.git
-cd deep-regression-prediction
+git clone https://github.com/nguyenva04/mixsim3d_gretsi.git
+cd mixsim3d_gretsi
 ```
-
-### 2. Create Virtual Environment
-
-```bash
-# Using conda
-conda create -n drp_env python=3.8
-conda activate drp_env
-
-# Using venv
-python -m venv drp_env
-source drp_env/bin/activate  # Unix
-drp_env\Scripts\activate    # Windows
-```
-
-### 3. Install Dependencies
-
-```bash
-# Install PyTorch (adjust for your CUDA version)
-pip install torch torchvision
-
-# Install project dependencies
-pip install -r requirements.txt
-```
-
 ## 📂 Project Structure
 
 ```
@@ -67,68 +34,69 @@ deep-regression-prediction/
 │   ├── utils/
 │   ├── handlers/
 │   ├── metrics/
-│   └── models/
+│   └── train/
 │
-├── configs/             # Configuration files
-├── data/                # Dataset storage
+├── data/                
 ├── scripts/             # Execution scripts
 └── README.md
 ```
 
-## ⚙️ Configuration
-
-Create a configuration file in `configs/config.yaml`:
-
-```yaml
-model:
-  type: regression        # regression or classification
-  backbone: resnet50
-  pretrained: true
-
-training:
-  epochs: 100
-  batch_size: 32
-  learning_rate: 0.001
-
-distributed:
-  backend: nccl
-  world_size: 4
-```
-
-## 🏃 Running Experiments
-
-### Training
+## 🏃 Self-supervised Training
+To run the self-supervised pre-training for MixSim3d on 3D micro-CT datasets, use the `train.py` script with the following command structure:
 
 ```bash
-# Single GPU
-python scripts/train.py --config configs/config.yaml
+python ./scripts/train_mixsim.py <dataset_path> -b <batch_size> -c <config_path> -e <epochs> -lr <learning_rate>
+```
 
-# Distributed Training
-torchrun --nproc_per_node=4 scripts/train.py --config configs/config.yaml
+### Command Arguments
+
+| Argument | Description | Example Value |
+|----------|-------------|---------------|
+| `<dataset_path>` | Path to the 3D micro-CT dataset | `"C:\Users\nguyenva\Documents\drp3d_project\data"` |
+| `-b` | Batch size | `2` |
+| `-c` | Path to configuration file | `"C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_mixsim.json"` |
+| `-e` | Number of training epochs | `100` |
+| `-lr` | Learning rate | `1e-5` |
+
+### Full Example Command
+```bash
+python ./scripts/train_mixsim.py "C:\Users\nguyenva\Documents\drp3d_project\data" -b 2 -c "C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_mixsim.json" -e 100 -lr 1e-5
+```
+## 🎯 Fine-tuning  
+To fine-tune the MixSim3d model on a 3D micro-CT dataset, use the `train_finetune.py` script with the following command structure:  
+
+```bash
+python ./scripts/train_finetune.py <dataset_path> -b <batch_size> -c <config_path> -e <epochs> -lr <learning_rate>
+```
+
+### Command Arguments  
+| Argument | Description | Example Value |
+|----------|-------------|---------------|
+| `<dataset_path>` | Path to the 3D micro-CT dataset | `"C:\Users\nguyenva\Documents\drp3d_project\data"` |
+| `-b` | Batch size | `2` |
+| `-c` | Path to configuration file | `"C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_finetune.json"` |
+| `-e` | Number of training epochs | `100` |
+| `-lr` | Learning rate | `1e-5` |
+
+### Full Example Command  
+```bash
+python ./scripts/train_finetune.py "C:\Users\nguyenva\Documents\drp3d_project\data" -b 2 -c "C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_finetune.json" -e 100 -lr 1e-5**
 ```
 
 ### Prediction
-
 ```bash
 python scripts/predict.py \
-    --config configs/config.yaml \
-    --checkpoint path/to/checkpoint \
-    --input_data path/to/input/data
+    --config configs/config_predict.json \
 ```
+**Note**: Please review and modify the checkpoint path in the `.json` file for fine-tuning and prediction steps.
 
 ## 📊 Performance Metrics
 
 - R2 Score (Regression)
 - Top-K Accuracy (Classification)
 - Scatter Plot Analysis
+The results will be automatically saved in the MLflow logger when executing `train_finetune.py` and `predict.py`. 
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📄 License
 
@@ -136,16 +104,13 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📞 Contact
 
-Your Name - [your.email@example.com](mailto:your.email@example.com)
+Van Thao NGUYEN - [van-thao.nguyen@ifpen.fr](mailto:van-thao.nguyen@ifpen.fr)
 
-Project Link: [https://github.com/yourusername/deep-regression-prediction](https://github.com/yourusername/deep-regression-prediction)
+Project Link: [https://github.com/nguyenva04/mixsim3d_gretsi](https://github.com/nguyenva04/mixsim3d_gretsi/tree/main)
 
 ## 🙏 Acknowledgements
 
 - [PyTorch](https://pytorch.org/)
-- [Distributed Training Frameworks]
-- [Any other significant libraries/resources]
+- [Distributed Training Frameworks](https://pytorch.org/docs/stable/generated/torch.nn.parallel.DistributedDataParallel.html)
 
----
 
-**Note**: Replace placeholders like `yourusername` with your actual GitHub username and details.
