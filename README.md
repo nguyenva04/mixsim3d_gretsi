@@ -95,6 +95,7 @@ python scripts/predict.py \
 - R2 Score (Regression)
 - Top-K Accuracy (Classification)
 - Scatter Plot Analysis
+  
 The results will be automatically saved in the MLflow logger when executing `train_finetune.py` and `predict.py`. 
 
 
