@@ -27,13 +27,15 @@ MixSim3d is an innovative deep learning self-supervised methodology designed to 
 
 ## 📋 Prerequisites
 
--Refer to requirements.txt for installing all python dependencies. We use python 3.10.13 with pytorch 2.1.2+cu118.
+-Refer to requirements.txt for installing all python dependencies. We use python 3.10.13 with pytorch 2.1.2.
 
 ## 🔧 Installation
 
 ```bash
 git clone https://github.com/nguyenva04/mixsim3d_gretsi.git
 cd mixsim3d_gretsi
+pip install -r requirements.txt
+pip install -e .
 ```
 ## 📂 Project Structure
 
@@ -94,6 +96,7 @@ python ./scripts/train_finetune.py <dataset_path> -b <batch_size> -c <config_pat
 python ./scripts/train_finetune.py "C:\Users\nguyenva\Documents\drp3d_project\data" -b 2 -c "C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_finetune.json" -e 100 -lr 1e-5**
 ```
 
+
 ## 🔍 Prediction  
 This step is to evaluate the model by producing the scatter plot, presenting the results in the paper.
 
@@ -104,6 +107,37 @@ python scripts/predict.py --config configs/config_predict.json
 
 ---
 
+# 🧪 Inference
+This folder contains the dataset and pretrained model checkpoints used for inference on 3D images of sandstone rock (Boise), consisting of 100 subsamples of size 100×100×100.
+This dataset is intended for use in inference tasks to predict permeability directly from the 3D volumetric data.
+
+### 📁 Dataset Structure
+
+Download here: [https://zenodo.org/records/15348378](https://zenodo.org/records/15348378)
+```
+DRP_gretsi.zip/
+├── checkpoint/
+│   ├── BYOL_checkpoint.pt
+│   ├── MixSim3d_checkpoint.pt
+│   ├── MoCo_checkpoint.pt
+│   ├── ResNet18_checkpoint.pt
+│   ├── SimCLR_checkpoint.pt
+│   └── SimSiam_checkpoint.pt
+├── minicubes/
+│   ├── cube_000_offset_[1237_676_233].dat
+│   ├── cube_001_offset_[0_52_783].dat
+│   └── ...
+└── minicubes_info.csv  # Contains: filename,x,y,z,label
+```
+### Full Example Command 
+```bash
+python ./scripts/run_inferent.py --config "path\mixsim3d_gretsi\drp\utils\cf\config_inferent.json"
+```
+📌 **Note** Modify the following in config_inferent.json:
+
+"root_dir": Path to the small dataset
+
+"checkpoint_path": Path to the pretrained model checkpoint
 
 ## 📊 Performance Metrics
 
