@@ -1,0 +1,8 @@
+{
+  "root_dir": "C:/Users/nguyenva/Documents/drp3d_project/data/4444/minicubes_dat",
+  "checkpoint_path": "C:/Users/nguyenva/Documents/drp3d_project/mlruns/953330077518082030/923c2927ffcf45b3ae92d6a94fa38c4b/artifacts/checkpoints/best_checkpoint.pt",
+  "batch_size": 4,
+  "model_depth": 18,
+  "mean": 32928.34934854074,
+  "std": 6935.238201002077
+}
