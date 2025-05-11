@@ -54,58 +54,6 @@ mixsim3d_gretsi/
 └── README.md
 ```
 
-## 🏃 Self-supervised Training
-To run the self-supervised pre-training for MixSim3d on 3D micro-CT datasets, use the `train.py` script with the following command structure:
-
-```bash
-python ./scripts/train_mixsim.py <dataset_path> -b <batch_size> -c <config_path> -e <epochs> -lr <learning_rate>
-```
-
-### Command Arguments
-
-| Argument | Description | Example Value |
-|----------|-------------|---------------|
-| `<dataset_path>` | Path to the 3D micro-CT dataset | `"C:\Users\nguyenva\Documents\drp3d_project\data"` |
-| `-b` | Batch size | `2` |
-| `-c` | Path to configuration file | `"C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_mixsim.json"` |
-| `-e` | Number of training epochs | `100` |
-| `-lr` | Learning rate | `1e-5` |
-
-### Full Example Command
-```bash
-python ./scripts/train_mixsim.py "C:\Users\nguyenva\Documents\drp3d_project\data" -b 2 -c "C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_mixsim.json" -e 100 -lr 1e-5
-```
-## 🎯 Fine-tuning  
-To fine-tune the MixSim3d model on a 3D micro-CT dataset, use the `train_finetune.py` script with the following command structure:  
-
-```bash
-python ./scripts/train_finetune.py <dataset_path> -b <batch_size> -c <config_path> -e <epochs> -lr <learning_rate>
-```
-
-### Command Arguments  
-| Argument | Description | Example Value |
-|----------|-------------|---------------|
-| `<dataset_path>` | Path to the 3D micro-CT dataset | `"C:\Users\nguyenva\Documents\drp3d_project\data"` |
-| `-b` | Batch size | `2` |
-| `-c` | Path to configuration file | `"C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_finetune.json"` |
-| `-e` | Number of training epochs | `100` |
-| `-lr` | Learning rate | `1e-5` |
-
-### Full Example Command  
-```bash
-python ./scripts/train_finetune.py "C:\Users\nguyenva\Documents\drp3d_project\data" -b 2 -c "C:\Users\nguyenva\Documents\drp3d_project\drp\utils\cf\config_finetune.json" -e 100 -lr 1e-5**
-```
-
-
-## 🔍 Prediction  
-This step is to evaluate the model by producing the scatter plot, presenting the results in the paper.
-
-```bash
-python scripts/predict.py --config configs/config_predict.json 
-```
-**Note**: Please review and modify the checkpoint path in the `.json` file for fine-tuning and prediction steps.
-
----
 
 # 🧪 Inference
 This folder contains the dataset and pretrained model checkpoints used for inference on 3D images of sandstone rock (Boise), consisting of 100 subsamples of size 100×100×100.
